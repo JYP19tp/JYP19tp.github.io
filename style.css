@@ -8,11 +8,17 @@ body {
 /*ナビゲーションバーのスタイル*/
 nav {
     background-color: #333;
+    opacity: 0.2;/*透明度 - カーソルを乗せてないとき*/
     padding: 10px;
+    margin-top: 20px; /*トップからの位置*/
     position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+}
+
+nav:hover{
+    opacity: 0.8; /*カーソルを乗せたとき*/
 }
 
 nav ul {
