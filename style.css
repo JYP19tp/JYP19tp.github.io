@@ -15,6 +15,8 @@ nav {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    white-space: nowrap;/*navbarの中のテキストが改行できないように*/
+    display: inline-block;
 }
 
 nav:hover{
