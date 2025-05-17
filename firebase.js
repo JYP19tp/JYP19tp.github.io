@@ -1,18 +1,18 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import { getFirestore, setDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAY_JKc3B_IIGjsY2EJ_TSSmL8cs8ZViiw",
-    authDomain: "jyp19tp.firebaseapp.com",
-    projectId: "jyp19tp",
-    storageBucket: "jyp19tp.firebasestorage.app",
-    messagingSenderId: "170707899099",
-    appId: "1:170707899099:web:c17fc2e09bde76e5f372fe",
-    measurementId: "G-QKK0WB94Y2"
-  };
+  apiKey: "AIzaSyAL1XiOrc1f7DuRzxKvhY_TdMAAB2VLZng",
+  authDomain: "ekrhrh-3b0ac.firebaseapp.com",
+  projectId: "ekrhrh-3b0ac",
+  storageBucket: "ekrhrh-3b0ac.firebasestorage.app",
+  messagingSenderId: "26901071809",
+  appId: "1:26901071809:web:553943e0b5379fa5e25140",
+  measurementId: "G-K8FSNKCK9X"
+};
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
@@ -26,10 +26,12 @@ form.addEventListener("submit", async (e) => {
     const content = document.getElementById("content_Post_Favorite").value;
 
     try {
-        const docRef = await addDoc(collection(db, "FavoritePosts"), {
+      const customDocId = `${title.replace(/\s+/g, "_").toLowerCase()}_${Date.now()}`;
+
+      await setDoc(doc(db, "FavoritePosts", customDocId), {
           title: title,
           content: content,
-          createdAt: new Date()
+          createdAt: serverTimestamp()
         });
         alert("保存されました!");
         form.reset();
